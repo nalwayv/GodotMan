@@ -22,7 +22,7 @@ var pellets_eaten: int = 0
 var pills_eaten: int = 0
 var score: int = 0
 var has_special: bool = false
-var is_active: bool = false
+var is_running: bool = false
 
 @onready var map := $Map as Map
 @onready var player := $Player as Player
@@ -109,6 +109,8 @@ func _update_orange_target() -> void:
 		orange.set_target(cell_target.position)
 
 func _reset_stage() -> void:
+	is_running = false
+	
 	chase_timer.stop()
 	scatter_timer.stop()
 	special_timer.stop()
@@ -143,6 +145,8 @@ func _reset_stage() -> void:
 	ui.start_timer()
 	
 func _reset_game() -> void:
+	is_running = false
+	
 	chase_timer.stop()
 	scatter_timer.stop()
 	special_timer.stop()
@@ -375,7 +379,7 @@ func _on_ui_start_game() -> void:
 	blue.run_start_timer()
 	orange.run_start_timer()
 	
-	is_active = true
+	is_running = true
 	
 	chase_timer.start()
 	special_timer.start()
@@ -409,7 +413,7 @@ func _ready() -> void:
 	ui.start_timer()
 
 func _process(_delta: float) -> void:
-	if not is_active:
+	if not is_running:
 		return
 		
 	_update_red_target()
