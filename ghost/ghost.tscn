@@ -1,0 +1,226 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7ra61bas87jl"]
+
+[ext_resource type="Script" path="res://ghost/ghost.gd" id="1_i4st1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vpymw"]
+size = Vector2(10, 10)
+
+[sub_resource type="Animation" id="Animation_5kibi"]
+resource_name = "Eaten"
+length = 0.5
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BodyTarget/Polygon:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.180392, 0.356863, 0.486275, 0), Color(0.180392, 0.356863, 0.486275, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EyesTarget/R:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EyesTarget/L:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7trbm"]
+resource_name = "Fright"
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BodyTarget/Polygon:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.51, 1),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Color(0.180392, 0.356863, 0.486275, 1), Color(1, 1, 1, 1), Color(0.180392, 0.356863, 0.486275, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EyesTarget/R:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.51, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EyesTarget/L:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.51, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gcuj8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BodyTarget/Polygon:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.180392, 0.356863, 0.486275, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BodyTarget/Polygon:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EyesTarget/R:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("EyesTarget/L:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EyesTarget:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6rayf"]
+_data = {
+"Eaten": SubResource("Animation_5kibi"),
+"Fright": SubResource("Animation_7trbm"),
+"RESET": SubResource("Animation_gcuj8")
+}
+
+[node name="ghost" type="Area2D"]
+collision_layer = 16
+script = ExtResource("1_i4st1")
+
+[node name="BodyTarget" type="Marker2D" parent="."]
+scale = Vector2(1.16, 1.2)
+
+[node name="Polygon" type="Polygon2D" parent="BodyTarget"]
+color = Color(0.180392, 0.356863, 0.486275, 0)
+polygon = PackedVector2Array(-13.7931, 12.5, -13.7931, -6.66667, -6.03448, -14.1667, 6.89655, -14.1667, 13.7931, -6.66667, 13.7931, 12.5, 8.62069, 8.33333, 3.44828, 12.5, 0, 8.33333, -3.44828, 12.5, -8.62069, 8.33333)
+
+[node name="EyesTarget" type="Marker2D" parent="."]
+gizmo_extents = 20.0
+
+[node name="R" type="Polygon2D" parent="EyesTarget"]
+position = Vector2(32, 34)
+polygon = PackedVector2Array(-30, -36, -26, -40, -22, -36, -26, -32)
+
+[node name="L" type="Polygon2D" parent="EyesTarget"]
+position = Vector2(20, 34)
+polygon = PackedVector2Array(-30, -36, -26, -40, -22, -36, -26, -32)
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vpymw")
+
+[node name="RayCastDirection" type="RayCast2D" parent="."]
+position = Vector2(-3.8147e-06, 4.19617e-05)
+enabled = false
+target_position = Vector2(20, 0)
+collision_mask = 2
+
+[node name="LineToTarget" type="Line2D" parent="."]
+position = Vector2(-3.8147e-06, 4.19617e-05)
+points = PackedVector2Array(0, 0, 0, 0)
+width = 3.0
+default_color = Color(0.345098, 0.972549, 0.227451, 0.411765)
+
+[node name="FrightTimer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+reset_on_save = false
+libraries = {
+"": SubResource("AnimationLibrary_6rayf")
+}
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="FrightTimer" to="." method="_on_fright_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

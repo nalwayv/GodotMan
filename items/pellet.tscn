@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://drvcmfnrsklw2"]
+
+[ext_resource type="Script" path="res://items/pellet.gd" id="1_ruul4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cyn5"]
+size = Vector2(10, 10)
+
+[node name="pellet" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_ruul4")
+
+[node name="Polygon" type="Polygon2D" parent="."]
+color = Color(0.270588, 0.352941, 0.541176, 1)
+polygon = PackedVector2Array(-2, -2, 2, -2, 2, 2, -2, 2)
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5cyn5")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

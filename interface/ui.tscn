@@ -1,0 +1,104 @@
+[gd_scene load_steps=3 format=3 uid="uid://42f60oat1h0d"]
+
+[ext_resource type="FontFile" uid="uid://cnl4lw7yhagts" path="res://assets/Kenney Future.ttf" id="1_72l7t"]
+[ext_resource type="Script" path="res://interface/ui.gd" id="1_ggv2k"]
+
+[node name="ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ggv2k")
+metadata/_edit_horizontal_guides_ = [680.0, 80.0]
+metadata/_edit_vertical_guides_ = [155.0, 485.0]
+
+[node name="Header" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.111
+offset_bottom = 0.0799942
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBox" type="CenterContainer" parent="Header"]
+layout_mode = 2
+
+[node name="Score" type="VBoxContainer" parent="Header/HBox"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Message" type="Label" parent="Header/HBox/Score"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_72l7t")
+theme_override_font_sizes/font_size = 20
+text = "High Score"
+
+[node name="Center" type="CenterContainer" parent="Header/HBox/Score"]
+layout_mode = 2
+
+[node name="Value" type="Label" parent="Header/HBox/Score/Center"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_72l7t")
+theme_override_font_sizes/font_size = 20
+text = "0"
+
+[node name="Main" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.111
+anchor_right = 1.0
+anchor_bottom = 0.944
+offset_top = 0.0799942
+offset_bottom = 0.319946
+theme_override_constants/margin_left = 160
+theme_override_constants/margin_top = 305
+theme_override_constants/margin_right = 160
+theme_override_constants/margin_bottom = 240
+
+[node name="Center" type="CenterContainer" parent="Main"]
+layout_mode = 2
+
+[node name="Message" type="Label" parent="Main/Center"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_72l7t")
+theme_override_font_sizes/font_size = 20
+text = "Ready!
+"
+
+[node name="Footer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.944
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.320007
+grow_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBox" type="HBoxContainer" parent="Footer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Tokens" type="MarginContainer" parent="Footer/HBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="HBox" type="HBoxContainer" parent="Footer/HBox/Tokens"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+
+[node name="MessageTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

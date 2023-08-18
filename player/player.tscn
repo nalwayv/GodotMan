@@ -1,0 +1,83 @@
+[gd_scene load_steps=6 format=3 uid="uid://d15bqhuoopiyx"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_pv6q3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_egb4l"]
+size = Vector2(10, 10)
+
+[sub_resource type="Animation" id="Animation_i6b1x"]
+resource_name = "Chomp"
+length = 0.2
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [PackedVector2Array(0, -15, 12, -10, 16, 0, 0, 0, 16, 0, 12, 11, 0, 15, -11, 11, -15, 0, -11, -10), PackedVector2Array(0, -15, 12, -10, 6, -5, 0, 0, 4, 4, 12, 11, 0, 15, -11, 11, -15, 0, -11, -10), PackedVector2Array(0, -15, 12, -10, 16, 0, 0, 0, 16, 0, 12, 11, 0, 15, -11, 11, -15, 0, -11, -10)]
+}
+
+[sub_resource type="Animation" id="Animation_15cc3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(0, -15, 12, -10, 16, 0, 0, 0, 16, 0, 12, 11, 0, 15, -11, 11, -15, 0, -11, -10)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Polygon:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.5708]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rmh2b"]
+_data = {
+"Chomp": SubResource("Animation_i6b1x"),
+"RESET": SubResource("Animation_15cc3")
+}
+
+[node name="player" type="Area2D"]
+collision_mask = 0
+script = ExtResource("1_pv6q3")
+TileSize = 20.0
+
+[node name="Polygon" type="Polygon2D" parent="."]
+rotation = -1.5708
+color = Color(0.235294, 0.552941, 0.780392, 1)
+polygon = PackedVector2Array(0, -15, 12, -10, 16, 0, 0, 0, 16, 0, 12, 11, 0, 15, -11, 11, -15, 0, -11, -10)
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_egb4l")
+
+[node name="RayCastInput" type="RayCast2D" parent="."]
+target_position = Vector2(0, -25)
+collision_mask = 2
+
+[node name="RayCastDirection" type="RayCast2D" parent="."]
+target_position = Vector2(10, 0)
+collision_mask = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rmh2b")
+}

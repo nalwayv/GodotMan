@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://bj5f4ulch7re1"]
+
+[ext_resource type="Script" path="res://items/special.gd" id="1_i3o8w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_le2px"]
+size = Vector2(10, 10)
+
+[sub_resource type="Animation" id="Animation_by2he"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.478431, 0.466667, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8tr04"]
+resource_name = "Shine"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Color(0.478431, 0.466667, 1, 1), Color(0.478431, 0.466667, 1, 0.341176), Color(0.478431, 0.466667, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rghya"]
+_data = {
+"RESET": SubResource("Animation_by2he"),
+"Shine": SubResource("Animation_8tr04")
+}
+
+[node name="special" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_i3o8w")
+
+[node name="Polygon" type="Polygon2D" parent="."]
+color = Color(0.478431, 0.466667, 1, 1)
+polygon = PackedVector2Array(-8, -4, 0, -11, 8, -4, 8, 4, 0, 11, -8, 4)
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_le2px")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rghya")
+}
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

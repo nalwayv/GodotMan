@@ -1,0 +1,168 @@
+[gd_scene load_steps=9 format=3 uid="uid://dc8l7e8iurwpm"]
+
+[ext_resource type="Script" path="res://stage/stage.gd" id="1_1026h"]
+[ext_resource type="PackedScene" uid="uid://dk0elr1ijp8km" path="res://map/map.tscn" id="2_rafjv"]
+[ext_resource type="PackedScene" uid="uid://c7ra61bas87jl" path="res://ghost/ghost.tscn" id="3_fiist"]
+[ext_resource type="PackedScene" uid="uid://d15bqhuoopiyx" path="res://player/player.tscn" id="4_0wrlm"]
+[ext_resource type="PackedScene" uid="uid://42f60oat1h0d" path="res://interface/ui.tscn" id="5_xjbnm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ok56g"]
+size = Vector2(20, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fp472"]
+size = Vector2(20, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rb3ev"]
+size = Vector2(40, 20)
+
+[node name="Stage" type="Node"]
+script = ExtResource("1_1026h")
+TileSize = 20.0
+
+[node name="Camera" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="Background" type="Polygon2D" parent="."]
+color = Color(0.12549, 0.137255, 0.141176, 1)
+polygon = PackedVector2Array(-40, -40, 680, -40, 680, 760, -40, 760)
+
+[node name="Map" parent="." instance=ExtResource("2_rafjv")]
+TileSize = 20.0
+
+[node name="Pellets" type="Node" parent="."]
+
+[node name="Pills" type="Node" parent="."]
+
+[node name="Red" parent="." instance=ExtResource("3_fiist")]
+TileSize = 20.0
+StartTime = 2.0
+
+[node name="Pink" parent="." instance=ExtResource("3_fiist")]
+GhostType = 1
+TileSize = 20.0
+StartTime = 8.0
+
+[node name="Blue" parent="." instance=ExtResource("3_fiist")]
+GhostType = 2
+TileSize = 20.0
+StartTime = 16.0
+
+[node name="Orange" parent="." instance=ExtResource("3_fiist")]
+GhostType = 3
+TileSize = 20.0
+StartTime = 32.0
+
+[node name="Player" parent="." instance=ExtResource("4_0wrlm")]
+
+[node name="Border" type="Polygon2D" parent="."]
+position = Vector2(20, 60)
+color = Color(0.12549, 0.137255, 0.141176, 1)
+invert_enabled = true
+invert_border = 80.0
+polygon = PackedVector2Array(20, 0, 580, 0, 580, 620, 20, 620)
+
+[node name="Ui" parent="." instance=ExtResource("5_xjbnm")]
+
+[node name="RightTrigger" type="Area2D" parent="."]
+position = Vector2(640, 340)
+collision_layer = 8
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightTrigger"]
+position = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_ok56g")
+
+[node name="LeftTrigger" type="Area2D" parent="."]
+position = Vector2(-20, 340)
+collision_layer = 8
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftTrigger"]
+position = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_fp472")
+
+[node name="CellTrigger" type="Area2D" parent="."]
+position = Vector2(300, 280)
+collision_layer = 32
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CellTrigger"]
+position = Vector2(20, 10)
+shape = SubResource("RectangleShape2D_rb3ev")
+
+[node name="SpecialTarget" type="Marker2D" parent="."]
+position = Vector2(320, 410)
+gizmo_extents = 20.0
+
+[node name="CellTarget" type="Marker2D" parent="."]
+position = Vector2(320, 290)
+gizmo_extents = 20.0
+
+[node name="RedScatterTarget" type="Marker2D" parent="."]
+position = Vector2(560, 20)
+gizmo_extents = 20.0
+
+[node name="PinkScatterTarget" type="Marker2D" parent="."]
+position = Vector2(80, 20)
+gizmo_extents = 20.0
+
+[node name="BlueScatterTarget" type="Marker2D" parent="."]
+position = Vector2(580, 680)
+gizmo_extents = 20.0
+
+[node name="OrangeScatterTarget" type="Marker2D" parent="."]
+position = Vector2(60, 680)
+gizmo_extents = 20.0
+
+[node name="RedStartTarget" type="Marker2D" parent="."]
+position = Vector2(310, 290)
+gizmo_extents = 20.0
+
+[node name="PinkStartTarget" type="Marker2D" parent="."]
+position = Vector2(280, 350)
+gizmo_extents = 20.0
+
+[node name="BlueStartTarget" type="Marker2D" parent="."]
+position = Vector2(320, 350)
+gizmo_extents = 20.0
+
+[node name="OrangeStartTarget" type="Marker2D" parent="."]
+position = Vector2(360, 350)
+gizmo_extents = 20.0
+
+[node name="PlayerStartTarget" type="Marker2D" parent="."]
+position = Vector2(330, 530)
+gizmo_extents = 20.0
+
+[node name="LeftTriggerTarget" type="Marker2D" parent="."]
+position = Vector2(10, 350)
+gizmo_extents = 20.0
+
+[node name="RightTriggerTarget" type="Marker2D" parent="."]
+position = Vector2(630, 350)
+gizmo_extents = 20.0
+
+[node name="SpecialTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="ScatterTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="ChaseTimer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+
+[connection signal="hit_player" from="Red" to="." method="_on_ghost_hit_player"]
+[connection signal="hit_player" from="Pink" to="." method="_on_ghost_hit_player"]
+[connection signal="hit_player" from="Blue" to="." method="_on_ghost_hit_player"]
+[connection signal="hit_player" from="Orange" to="." method="_on_ghost_hit_player"]
+[connection signal="game_over" from="Ui" to="." method="_on_ui_game_over"]
+[connection signal="start_game" from="Ui" to="." method="_on_ui_start_game"]
+[connection signal="area_entered" from="RightTrigger" to="." method="_on_right_trigger_area_entered"]
+[connection signal="area_entered" from="LeftTrigger" to="." method="_on_left_trigger_area_entered"]
+[connection signal="area_entered" from="CellTrigger" to="." method="_on_cell_trigger_area_entered"]
+[connection signal="timeout" from="SpecialTimer" to="." method="_on_special_timer_timeout"]
+[connection signal="timeout" from="ScatterTimer" to="." method="_on_scatter_timer_timeout"]
+[connection signal="timeout" from="ChaseTimer" to="." method="_on_chase_timer_timeout"]
